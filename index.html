@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estee Preston</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    /* ─── CUSTOM FONTS ──────────────────────────────────────────── */
+    @font-face {
+      font-family: 'Efonix';
+      src: url('fonts/Efonix.ttf') format('truetype');
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: 'LuloClean';
+      src: url('fonts/LuloCleanOne.otf') format('opentype');
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: 'BodoniPoster';
+      src: url('fonts/BodoniFLF-BoldItalic.ttf') format('truetype');
+      font-weight: bold;
+    }
+
+    /* ─── VARIABLES ─────────────────────────────────────────────── */
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #1a2e4a;
+      --white: #ffffff;
+      --off-white: #f7f8fc;
+      --light-blue: #eaf0f8;
+      --accent-blue: #c8d8ec;
+      --border: #d0dcea;
+      --font-efonix: 'Efonix', serif;
+      --font-lulo: 'LuloClean', 'Courier New', monospace;
+      --font-k2d: 'K2D', sans-serif;
+      --font-bodoni: 'BodoniPoster', 'Georgia', serif;
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-k2d);
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+    }
+    .nav-brand {
+      font-family: var(--font-efonix);
+      font-size: 1.25rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links > li {
+      position: relative;
+    }
+    .nav-links > li > a,
+    .nav-links > li > span {
+      font-family: var(--font-efonix);
+      font-size: 0.85rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 8px 0;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .nav-links > li > a:hover,
+    .nav-links > li > span:hover { opacity: 0.5; }
+
+    /* Dropdown */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      min-width: 200px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-links > li:hover .dropdown {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    .dropdown a {
+      font-family: var(--font-efonix);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      text-decoration: none;
+      display: block;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover { background: var(--light-blue); }
+
+    /* ─── PAGE SYSTEM ───────────────────────────────────────────── */
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding-top: 68px;
+    }
+    .page.active { display: block; }
+
+    /* ─── SECTION WRAPPER ───────────────────────────────────────── */
+    .section-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    /* ─── PAGE TITLE ────────────────────────────────────────────── */
+    .page-title {
+      font-family: var(--font-lulo);
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--navy);
+      letter-spacing: 0.12em;
+      margin-bottom: 48px;
+    }
+
+    /* ─── BACK BUTTON ───────────────────────────────────────────── */
+    .back-btn {
+      display: inline-block;
+      font-family: var(--font-lulo);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--navy);
+      border: 1px solid var(--navy);
+      padding: 10px 22px;
+      cursor: pointer;
+      margin-bottom: 64px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-btn:hover { background: var(--navy); color: var(--white); }
+
+    /* ════════════════════════════════════════════════════════════
+       SERVICES (HOME)
+    ════════════════════════════════════════════════════════════ */
+    #page-services { background: var(--white); }
+
+    .services-hero {
+      background: var(--light-blue);
+      padding: 100px 48px 80px;
+      text-align: center;
+    }
+    .services-hero h1 {
+      font-family: var(--font-lulo);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      letter-spacing: 0.18em;
+      color: var(--navy);
+      margin-bottom: 72px;
+    }
+
+    /* Photo grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto 32px;
+    }
+    .service-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .service-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      background: var(--accent-blue);
+      /* placeholder style until real photos added */
+      position: relative;
+    }
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-k2d);
+      font-size: 0.75rem;
+      color: var(--navy-mid);
+      letter-spacing: 0.08em;
+      opacity: 0.6;
+      text-align: center;
+      padding: 12px;
+    }
+    .service-btn {
+      font-family: var(--font-lulo);
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      color: var(--white);
+      background: var(--navy);
+      border: none;
+      padding: 14px 8px;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: background 0.2s, color 0.2s;
+      width: 100%;
+    }
+    .service-btn:hover { background: var(--navy-mid); }
+
+    /* Quote section */
+    .quote-section {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 90px 48px;
+    }
+    .quote-section h2 {
+      font-family: var(--font-lulo);
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      letter-spacing: 0.16em;
+      color: var(--navy);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-field label {
+      font-family: var(--font-k2d);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      text-transform: uppercase;
+    }
+    .form-field input,
+    .form-field textarea {
+      font-family: var(--font-k2d);
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--navy);
+      padding: 8px 0;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus { border-bottom-color: var(--navy-mid); }
+    .form-field textarea { resize: vertical; min-height: 100px; }
+    .form-full { margin-bottom: 16px; }
+    .send-btn {
+      font-family: var(--font-lulo);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      color: var(--white);
+      background: var(--navy);
+      border: none;
+      padding: 16px 40px;
+      cursor: pointer;
+      margin-top: 24px;
+      display: block;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .send-btn:hover { background: var(--navy-mid); }
+
+    /* ════════════════════════════════════════════════════════════
+       CONTENT PACKAGES
+    ════════════════════════════════════════════════════════════ */
+    #page-content { background: var(--white); }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-bottom: 2px;
+    }
+    .packages-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .package-card {
+      padding: 48px 36px;
+      border: 1px solid var(--border);
+    }
+    .package-card.alt { background: var(--light-blue); }
+    .package-name {
+      font-family: var(--font-lulo);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .package-price {
+      font-family: var(--font-lulo);
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
+      color: var(--navy);
+      margin-bottom: 28px;
+    }
+    .package-features {
+      list-style: none;
+      font-family: var(--font-k2d);
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: var(--navy);
+    }
+    .package-features li::before {
+      content: '— ';
+      opacity: 0.4;
+    }
+    .section-label {
+      font-family: var(--font-lulo);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--navy);
+      opacity: 0.5;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    /* ─── CONTACT FOOTER STRIP ──────────────────────────────────── */
+    .contact-strip {
+      background: var(--light-blue);
+      padding: 56px 48px;
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .strip-item { text-align: center; }
+    .strip-label {
+      font-family: var(--font-lulo);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      color: var(--navy);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .strip-value {
+      font-family: var(--font-k2d);
+      font-size: 0.9rem;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .social-icons { display: flex; gap: 20px; justify-content: center; margin-top: 4px; }
+    .social-icons a {
+      color: var(--navy);
+      font-size: 1.2rem;
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+    .social-icons a:hover { opacity: 0.4; }
+
+    /* ════════════════════════════════════════════════════════════
+       VIDEOGRAPHY
+    ════════════════════════════════════════════════════════════ */
+    #page-video { background: var(--white); }
+
+    .promo-block {
+      background: var(--light-blue);
+      padding: 48px;
+      margin-bottom: 64px;
+      border-left: 3px solid var(--navy);
+    }
+    .promo-title {
+      font-family: var(--font-bodoni);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .promo-desc {
+      font-family: var(--font-k2d);
+      font-size: 0.95rem;
+      color: var(--navy);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 80px;
+    }
+    .col-title {
+      font-family: var(--font-lulo);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--navy);
+      margin-bottom: 28px;
+    }
+    .col-list {
+      font-family: var(--font-lulo);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      line-height: 2.4;
+      color: var(--navy);
+      list-style: none;
+    }
+    .col-list-k2d {
+      font-family: var(--font-k2d);
+      font-size: 0.95rem;
+      line-height: 2.2;
+      color: var(--navy);
+      list-style: none;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PHOTOGRAPHY
+    ════════════════════════════════════════════════════════════ */
+    #page-photo { background: var(--white); }
+
+    .photo-services {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 80px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+    .photo-service-item { margin-bottom: 32px; }
+    .photo-service-name {
+      font-family: var(--font-lulo);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .photo-service-sub {
+      font-family: var(--font-k2d);
+      font-size: 0.88rem;
+      color: var(--navy);
+      opacity: 0.7;
+    }
+    .photo-addon {
+      font-family: var(--font-lulo);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      border-left: 1px solid var(--border);
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       EDITING
+    ════════════════════════════════════════════════════════════ */
+    #page-editing { background: var(--white); }
+
+    .editing-main {
+      margin-bottom: 80px;
+    }
+    .editing-tagline {
+      font-family: var(--font-lulo);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      line-height: 2;
+      color: var(--navy);
+      margin-bottom: 32px;
+      max-width: 500px;
+    }
+    .editing-prices {
+      font-family: var(--font-k2d);
+      font-size: 1rem;
+      line-height: 2.4;
+      color: var(--navy);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       CONTACT PAGE
+    ════════════════════════════════════════════════════════════ */
+    #page-contact { background: var(--white); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info-block { }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      font-family: var(--font-efonix);
+      font-size: 0.9rem;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .contact-row i { font-size: 1rem; color: var(--navy); width: 20px; text-align: center; }
+    .contact-social { margin-top: 40px; }
+    .contact-social-label {
+      font-family: var(--font-efonix);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+    .contact-form-block { }
+    .contact-title {
+      font-family: var(--font-efonix);
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      margin-bottom: 56px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════════════════════ */
+    footer {
+      background: var(--navy);
+      padding: 48px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .footer-text {
+      font-family: var(--font-efonix);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 2;
+      text-align: right;
+    }
+
+    /* ─── DIVIDER ────────────────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 64px 0;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .packages-grid { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .photo-services { grid-template-columns: 1fr; }
+      .photo-addon { writing-mode: horizontal-tb; transform: none; border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 20px; }
+      .section-wrap { padding: 60px 24px; }
+      .contact-strip { gap: 40px; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .packages-grid-2 { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { justify-content: flex-start; }
+      .footer-text { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════════════ -->
+<nav>
+  <a class="nav-brand" onclick="showPage('services')">Estee Preston</a>
+  <ul class="nav-links">
+    <li>
+      <span>Services</span>
+      <div class="dropdown">
+        <a onclick="showPage('content')">Content Packages</a>
+        <a onclick="showPage('video')">Videography</a>
+        <a onclick="showPage('photo')">Photography</a>
+        <a onclick="showPage('editing')">Editing</a>
+      </div>
+    </li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE: SERVICES (HOME)
+════════════════════════════════════════════════════════════ -->
+<div id="page-services" class="page active">
+
+  <div class="services-hero">
+    <h1>My Services</h1>
+
+    <div class="services-grid">
+      <!-- PHOTO 1: Content Packages -->
+      <div class="service-card">
+        <img src="images/content.jpg" class="service-photo" alt="Content Packages">
+        <button class="service-btn" onclick="showPage('content')">Content Packages</button>
+      </div>
+      <!-- PHOTO 2: Videography -->
+      <div class="service-card">
+        <img src="images/video.jpg" class="service-photo" alt="Videography">
+        <button class="service-btn" onclick="showPage('video')">Videography</button>
+      </div>
+      <!-- PHOTO 3: Photography -->
+      <div class="service-card">
+        <img src="images/photo.jpg" class="service-photo" alt="Photography">
+        <button class="service-btn" onclick="showPage('photo')">Photography</button>
+      </div>
+      <!-- PHOTO 4: Editing -->
+      <div class="service-card">
+        <img src="images/editing.jpg" class="service-photo" alt="Editing">
+        <button class="service-btn" onclick="showPage('editing')">Editing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GET A QUOTE -->
+  <div class="quote-section">
+    <h2>Get a Quote</h2>
+    <!--
+      FORMSPREE SETUP:
+      1. Go to formspree.io and create a free account
+      2. Create a new form — it will give you a URL like https://formspree.io/f/xxxxxxxx
+      3. Replace "YOUR_FORMSPREE_ID" below with that ID (just the letters/numbers after /f/)
+    -->
+    <form action="https://formspree.io/f/xwvngqyy" method="POST">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" name="first_name" required/>
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" name="last_name" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" required/>
+        </div>
+        <div class="form-field">
+          <label>Phone Number</label>
+          <input type="tel" name="phone"/>
+        </div>
+      </div>
+      <div class="form-field form-full">
+        <label>Message</label>
+        <textarea name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="send-btn">Send</button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer-text">
+      Estee Preston<br>
+      Burbank, CA<br>
+      (425)-247-8852<br>
+      esteepreston@gmail.com
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE: CONTENT PACKAGES
+════════════════════════════════════════════════════════════ -->
+<div id="page-content" class="page">
+  <div class="section-wrap">
+    <h1 class="page-title">Content Packages</h1>
+    <a class="back-btn" onclick="showPage('services')">← Back to Services</a>
+
+    <!-- ONE-TIME PACKAGES -->
+    <div class="packages-grid">
+      <div class="package-card">
+        <div class="package-name">Starter Package</div>
+        <div class="package-price">$550</div>
+        <ul class="package-features">
+          <li>2 hour shoot + color grading</li>
+          <li>2 edited short form videos (30–60 sec)</li>
+          <li>1 revision round</li>
+          <li>7 day turnaround</li>
+        </ul>
+      </div>
+      <div class="package-card">
+        <div class="package-name">Growth Package</div>
+        <div class="package-price">$1,000</div>
+        <ul class="package-features">
+          <li>4 hour shoot + color grading</li>
+          <li>4 edited short form videos (30–60 sec)</li>
+          <li>1 longer brand video (60–90 sec)</li>
+          <li>2 revision rounds</li>
+          <li>14 day turnaround</li>
+        </ul>
+      </div>
+      <div class="package-card">
+        <div class="package-name">Full Production Package</div>
+        <div class="package-price">$2,000</div>
+        <ul class="package-features">
+          <li>Creative planning session</li>
+          <li>Full day shoot + color grading</li>
+          <li>9 short form videos (30–60 sec)</li>
+          <li>2 revision rounds</li>
+          <li>Advanced lighting + audio</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MONTHLY PACKAGES -->
+    <div class="packages-grid-2" style="margin-top: 2px;">
+      <div class="package-card alt">
+        <div class="package-name">Basic Monthly</div>
+        <div class="package-price">$1,600<span style="font-size:0.65rem;letter-spacing:0.1em;">/mo</span></div>
+        <ul class="package-features">
+          <li>4 separate 2 hour shoots + color grading</li>
+          <li>8 edited short form videos (2 per week)</li>
+          <li>Revisions if needed</li>
+        </ul>
+      </div>
+      <div class="package-card alt">
+        <div class="package-name">Growth Monthly</div>
+        <div class="package-price">$3,000<span style="font-size:0.65rem;letter-spacing:0.1em;">/mo</span></div>
+        <ul class="package-features">
+          <li>4 separate 4 hour shoots + color grading</li>
+          <li>12 edited short form videos (3 per week)</li>
+          <li>2 longer brand videos</li>
+          <li>Strategy call or meeting each month</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip">
+    <div class="strip-item">
+      <span class="strip-label">Call</span>
+      <a class="strip-value" href="tel:4252478852">(425)-247-8852</a>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Email</span>
+      <a class="strip-value" href="mailto:esteepreston@gmail.com">esteepreston@gmail.com</a>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Follow</span>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/estee.preston" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/estee.preston" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/esteepreston" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="http://www.tiktok.com/@estee.preston" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-text">
+      Estee Preston<br>Burbank, CA<br>(425)-247-8852<br>esteepreston@gmail.com
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE: VIDEOGRAPHY
+════════════════════════════════════════════════════════════ -->
+<div id="page-video" class="page">
+  <div class="section-wrap">
+    <h1 class="page-title">Videography Services</h1>
+    <a class="back-btn" onclick="showPage('services')">← Back to Services</a>
+
+    <div class="promo-block">
+      <div class="promo-title">First Video Free</div>
+      <p class="promo-desc">Up to 1 minute long video with editing included<br><br>
+      In return: refer me to 3 people who would benefit from my services &amp; provide their contact information so I can reach out directly.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-title">What I Film:</div>
+        <ul class="col-list">
+          <li>Promos</li>
+          <li>Real Estate</li>
+          <li>Restaurants</li>
+          <li>Small Businesses</li>
+          <li>Music Videos</li>
+          <li>Acting Reels</li>
+          <li>Event Coverage</li>
+          <li>Podcasts</li>
+          <li>Car Rollers</li>
+          <li>Youtube</li>
+          <li>Sports</li>
+          <li>Courses &amp; Tutorials</li>
+          <li>Recruiting &amp; Training</li>
+          <li>+ More</li>
+        </ul>
+      </div>
+      <div>
+        <div class="col-title">Pricing:</div>
+        <ul class="col-list-k2d">
+          <li>$100 for 1 hour</li>
+          <li>$175 for 2 hours</li>
+          <li>$325 for 4 hours</li>
+          <li>$450 for 6 hours</li>
+          <li>$550 for 8 hours</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <div class="strip-item">
+      <span class="strip-label">Call</span>
+      <a class="strip-value" href="tel:4252478852">(425)-247-8852</a>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Email</span>
+      <a class="strip-value" href="mailto:esteepreston@gmail.com">esteepreston@gmail.com</a>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Follow</span>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/estee.preston" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/estee.preston" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/esteepreston" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="http://www.tiktok.com/@estee.preston" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-text">
+      Estee Preston<br>Burbank, CA<br>(425)-247-8852<br>esteepreston@gmail.com
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE: PHOTOGRAPHY
+════════════════════════════════════════════════════════════ -->
+<div id="page-photo" class="page">
+  <div class="section-wrap">
+    <h1 class="page-title">Photography Services</h1>
+    <a class="back-btn" onclick="showPage('services')">← Back to Services</a>
+
+    <div class="promo-block">
+      <div class="promo-title">$50 Off Photoshoots</div>
+      <p class="promo-desc">For students AND anyone who writes a 5 star review.</p>
+    </div>
+
+    <div class="photo-services">
+      <div>
+        <div class="photo-service-item">
+          <div class="photo-service-name">Headshots — $150</div>
+          <div class="photo-service-sub">Includes 10 edited photos</div>
+        </div>
+        <div class="photo-service-item">
+          <div class="photo-service-name">Car Photography — $150</div>
+          <div class="photo-service-sub">Includes 10 edited photos</div>
+        </div>
+        <div class="photo-service-item">
+          <div class="photo-service-name">Engagement — $250</div>
+          <div class="photo-service-sub">Includes 20 edited photos</div>
+        </div>
+        <div class="photo-service-item">
+          <div class="photo-service-name">Wedding — $500</div>
+          <div class="photo-service-sub">Includes 40 edited photos</div>
+        </div>
+        <div class="photo-service-item">
+          <div class="photo-service-name">Events — $550</div>
+          <div class="photo-service-sub">Includes 40 edited photos</div>
+        </div>
+        <div class="photo-service-item">
+          <div class="photo-service-name">Other — $75 / hour</div>
+        </div>
+      </div>
+      <div class="photo-addon">Add on edited photos for $10 each</div>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <div class="strip-item">
+      <span class="strip-label">Call</span>
+      <a class="strip-value" href="tel:4252478852">(425)-247-8852</a>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Email</span>
+      <a class="strip-value" href="mailto:esteepreston@gmail.com">esteepreston@gmail.com</a>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Follow</span>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/estee.preston" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/estee.preston" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/esteepreston" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="http://www.tiktok.com/@estee.preston" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-text">
+      Estee Preston<br>Burbank, CA<br>(425)-247-8852<br>esteepreston@gmail.com
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE: EDITING
+════════════════════════════════════════════════════════════ -->
+<div id="page-editing" class="page">
+  <div class="section-wrap">
+    <h1 class="page-title">Editing Services</h1>
+    <a class="back-btn" onclick="showPage('services')">← Back to Services</a>
+
+    <div class="promo-block">
+      <div class="promo-title">50% Off First Edit</div>
+      <p class="promo-desc">For students AND anyone who writes a 5 star review.</p>
+    </div>
+
+    <div class="editing-main">
+      <div class="editing-tagline">
+        I edit for photos and videos.<br>
+        You provide the content, I do the rest:
+      </div>
+      <div class="editing-prices">
+        Photos — $15 each<br>
+        Videos — $50 per hour
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <div class="strip-item">
+      <span class="strip-label">Call</span>
+      <a class="strip-value" href="tel:4252478852">(425)-247-8852</a>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Email</span>
+      <a class="strip-value" href="mailto:esteepreston@gmail.com">esteepreston@gmail.com</a>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Follow</span>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/estee.preston" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/estee.preston" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/esteepreston" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="http://www.tiktok.com/@estee.preston" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-text">
+      Estee Preston<br>Burbank, CA<br>(425)-247-8852<br>esteepreston@gmail.com
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE: CONTACT
+════════════════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="section-wrap">
+    <h1 class="contact-title">Contact</h1>
+
+    <div class="contact-layout">
+      <!-- LEFT: Info -->
+      <div class="contact-info-block">
+        <a class="contact-row" href="tel:4252478852">
+          <i class="fa-solid fa-phone"></i>
+          (425)-247-8852
+        </a>
+        <a class="contact-row" href="mailto:esteepreston@gmail.com">
+          <i class="fa-solid fa-envelope"></i>
+          esteepreston@gmail.com
+        </a>
+        <div class="contact-social">
+          <div class="contact-social-label">Follow</div>
+          <div class="social-icons" style="justify-content:flex-start;">
+            <a href="https://www.instagram.com/estee.preston" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/estee.preston" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/in/esteepreston" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="http://www.tiktok.com/@estee.preston" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="contact-form-block">
+        <form action="https://formspree.io/f/xwvngqyy" method="POST">
+          <div class="form-row">
+            <div class="form-field">
+              <label>First Name</label>
+              <input type="text" name="first_name" required/>
+            </div>
+            <div class="form-field">
+              <label>Last Name</label>
+              <input type="text" name="last_name" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Email</label>
+              <input type="email" name="email" required/>
+            </div>
+            <div class="form-field">
+              <label>Phone Number</label>
+              <input type="tel" name="phone"/>
+            </div>
+          </div>
+          <div class="form-field form-full" style="margin-bottom:0;">
+            <label>Message</label>
+            <textarea name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="send-btn">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-text">
+      Estee Preston<br>Burbank, CA<br>(425)-247-8852<br>esteepreston@gmail.com
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT — Page navigation
+════════════════════════════════════════════════════════════ -->
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
