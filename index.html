@@ -14,17 +14,17 @@
     /* ─── CUSTOM FONTS ──────────────────────────────────────────── */
     @font-face {
       font-family: 'Efonix';
-      src: url('fonts/Efonix.ttf') format('truetype');
+      src: url('fonts/efonix.otf') format('truetype');
       font-weight: normal;
     }
     @font-face {
       font-family: 'LuloClean';
-      src: url('fonts/LuloCleanOne.otf') format('opentype');
+      src: url('fonts/luloclean.otf') format('opentype');
       font-weight: normal;
     }
     @font-face {
       font-family: 'BodoniPoster';
-      src: url('fonts/BodoniFLF-BoldItalic.ttf') format('truetype');
+      src: url('fonts/bodoniposter.otf') format('truetype');
       font-weight: bold;
     }
 
@@ -609,7 +609,7 @@
   <a class="nav-brand" onclick="showPage('services')">Estee Preston</a>
   <ul class="nav-links">
     <li>
-      <span>Services</span>
+      <span onclick="showPage('services')">Services</span>
       <div class="dropdown">
         <a onclick="showPage('content')">Content Packages</a>
         <a onclick="showPage('video')">Videography</a>
