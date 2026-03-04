@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Estee Preston</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <!-- Font Awesome for social icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
-    /* ─── CUSTOM FONTS ──────────────────────────────────────────── */
     @font-face {
       font-family: 'Manifold';
       src: url('fonts/manifold.otf') format('opentype');
@@ -28,10 +25,9 @@
       font-weight: bold;
     }
 
-    /* ─── VARIABLES ─────────────────────────────────────────────── */
     :root {
       --navy: #0044bc;
-      --navy-mid: #1a2e4a;
+      --navy-mid: #0036a0;
       --white: #ffffff;
       --light-blue: #eaf0f8;
       --accent-blue: #c8d8ec;
@@ -42,7 +38,6 @@
       --font-bodoni: 'BodoniPoster', 'Georgia', serif;
     }
 
-    /* ─── RESET ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -67,12 +62,27 @@
     }
     .nav-brand {
       font-family: var(--font-manifold);
-      font-size: .85rem;
+      font-size: 0.85rem;
       color: var(--navy);
       text-decoration: none;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       cursor: pointer;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--navy);
     }
     .nav-links {
       display: flex;
@@ -162,9 +172,7 @@
     }
     .back-btn:hover { background: var(--navy); color: var(--white); }
 
-    /* ════════════════════════════════════════════════════════════
-       SERVICES (HOME)
-    ════════════════════════════════════════════════════════════ */
+    /* ─── SERVICES ──────────────────────────────────────────────── */
     .services-hero {
       background: var(--light-blue);
       padding: 100px 48px 80px;
@@ -172,10 +180,11 @@
     }
     .services-hero h1 {
       font-family: var(--font-lulo);
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(1.2rem, 4vw, 3.5rem);
       letter-spacing: 0.18em;
       color: var(--navy);
       margin-bottom: 72px;
+      white-space: nowrap;
     }
     .services-grid {
       display: grid;
@@ -190,21 +199,6 @@
       aspect-ratio: 3/4;
       object-fit: cover;
       display: block;
-    }
-    .photo-placeholder {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: var(--accent-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-k2d);
-      font-size: 0.75rem;
-      color: var(--navy-mid);
-      letter-spacing: 0.08em;
-      opacity: 0.6;
-      text-align: center;
-      padding: 12px;
     }
     .service-btn {
       font-family: var(--font-lulo);
@@ -221,6 +215,7 @@
     }
     .service-btn:hover { background: var(--navy-mid); }
 
+    /* ─── QUOTE FORM ────────────────────────────────────────────── */
     .quote-section {
       max-width: 640px;
       margin: 0 auto;
@@ -259,7 +254,6 @@
       padding: 8px 0;
       outline: none;
       width: 100%;
-      transition: border-color 0.2s;
     }
     .form-field textarea { resize: vertical; min-height: 100px; }
     .form-full { margin-bottom: 16px; }
@@ -279,9 +273,7 @@
     }
     .send-btn:hover { background: var(--navy-mid); }
 
-    /* ════════════════════════════════════════════════════════════
-       PACKAGES
-    ════════════════════════════════════════════════════════════ */
+    /* ─── PACKAGES ──────────────────────────────────────────────── */
     .packages-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -293,10 +285,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 2px;
     }
-    .package-card {
-      padding: 48px 36px;
-      border: 1px solid var(--border);
-    }
+    .package-card { padding: 48px 36px; border: 1px solid var(--border); }
     .package-card.alt { background: var(--light-blue); }
     .package-name {
       font-family: var(--font-lulo);
@@ -347,17 +336,10 @@
       text-decoration: none;
     }
     .social-icons { display: flex; gap: 20px; justify-content: center; margin-top: 4px; }
-    .social-icons a {
-      color: var(--navy);
-      font-size: 1.2rem;
-      transition: opacity 0.2s;
-      text-decoration: none;
-    }
+    .social-icons a { color: var(--navy); font-size: 1.2rem; transition: opacity 0.2s; text-decoration: none; }
     .social-icons a:hover { opacity: 0.4; }
 
-    /* ════════════════════════════════════════════════════════════
-       PROMO BLOCK
-    ════════════════════════════════════════════════════════════ */
+    /* ─── PROMO BLOCK ───────────────────────────────────────────── */
     .promo-block {
       background: var(--light-blue);
       padding: 48px;
@@ -380,9 +362,7 @@
       max-width: 600px;
     }
 
-    /* ════════════════════════════════════════════════════════════
-       VIDEOGRAPHY
-    ════════════════════════════════════════════════════════════ */
+    /* ─── TWO COL ───────────────────────────────────────────────── */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -412,9 +392,7 @@
       list-style: none;
     }
 
-    /* ════════════════════════════════════════════════════════════
-       PHOTOGRAPHY
-    ════════════════════════════════════════════════════════════ */
+    /* ─── PHOTOGRAPHY ───────────────────────────────────────────── */
     .photo-services {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -448,9 +426,7 @@
       line-height: 1.6;
     }
 
-    /* ════════════════════════════════════════════════════════════
-       EDITING
-    ════════════════════════════════════════════════════════════ */
+    /* ─── EDITING ───────────────────────────────────────────────── */
     .editing-main { margin-bottom: 80px; }
     .editing-tagline {
       font-family: var(--font-lulo);
@@ -468,9 +444,7 @@
       color: var(--navy);
     }
 
-    /* ════════════════════════════════════════════════════════════
-       CONTACT PAGE
-    ════════════════════════════════════════════════════════════ */
+    /* ─── CONTACT PAGE ──────────────────────────────────────────── */
     .contact-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -489,15 +463,6 @@
     }
     .contact-row i { font-size: 1rem; color: var(--navy); width: 20px; text-align: center; }
     .contact-social { margin-top: 40px; }
-    .contact-social-label {
-      font-family: var(--font-manifold);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 16px;
-      opacity: 0.6;
-    }
     .contact-title {
       font-family: var(--font-manifold);
       font-size: clamp(1.4rem, 3vw, 2.4rem);
@@ -507,9 +472,7 @@
       margin-bottom: 56px;
     }
 
-    /* ════════════════════════════════════════════════════════════
-       FOOTER
-    ════════════════════════════════════════════════════════════ */
+    /* ─── FOOTER ────────────────────────────────────────────────── */
     footer {
       background: var(--navy);
       padding: 48px;
@@ -526,9 +489,38 @@
       letter-spacing: 0.08em;
     }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 24px;
+        gap: 4px;
+        align-items: flex-start;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links > li { width: 100%; }
+      .nav-links > li > a,
+      .nav-links > li > span { padding: 12px 0; font-size: 0.85rem; }
+      .dropdown {
+        position: static;
+        opacity: 1;
+        pointer-events: all;
+        transform: none;
+        border: none;
+        min-width: unset;
+        padding-left: 16px;
+        display: block;
+      }
+      .dropdown a { padding: 10px 0; border-bottom: none; font-size: 0.75rem; }
+      .hamburger { display: flex; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .packages-grid { grid-template-columns: 1fr 1fr; }
       .two-col { grid-template-columns: 1fr; gap: 40px; }
@@ -537,6 +529,7 @@
       .photo-addon { writing-mode: horizontal-tb; transform: none; border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 20px; }
       .section-wrap { padding: 60px 24px; }
       .contact-strip { gap: 40px; }
+      .services-hero { padding: 60px 24px 60px; }
     }
     @media (max-width: 600px) {
       .services-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -553,7 +546,10 @@
 <!-- NAVBAR -->
 <nav>
   <a class="nav-brand" onclick="showPage('services')">Estee Preston</a>
-  <ul class="nav-links">
+  <button class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li>
       <span onclick="showPage('services')">Services</span>
       <div class="dropdown">
@@ -791,7 +787,7 @@
         <a href="https://www.instagram.com/estee.preston" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/estee.preston" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="https://www.linkedin.com/in/esteepreston" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="http://www.tiktok.com/@estee.preston" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="http://www.tiktok.com/@estee.prison" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
       </div>
     </div>
   </div>
@@ -835,9 +831,13 @@
 </div>
 
 <script>
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
+    document.getElementById('nav-links').classList.remove('open');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
