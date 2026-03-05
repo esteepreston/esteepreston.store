@@ -30,7 +30,7 @@
       --navy-mid: #002d7a;
       --white: #eaf0f8;
       --light-blue: #C2D7FF;
-      --accent-blue: #c8d8ec;
+      --mid-blue: #C1DBFB;
       --border: #d0dcea;
       --font-manifold: 'Manifold', serif;
       --font-lulo: 'LuloClean', 'Courier New', monospace;
@@ -174,7 +174,7 @@
 
     /* ─── SERVICES ──────────────────────────────────────────────── */
     .services-hero {
-      background: var(--light-blue);
+      background: #C2D7FF;
       padding: 100px 48px 80px;
       text-align: center;
     }
@@ -218,7 +218,7 @@
     /* ─── QUOTE SECTION ─────────────────────────────────────────── */
     .quote-outer {
       width: 100%;
-      background: #C2D7FF;
+      background: #C1DBFB;
       display: flex;
       justify-content: center;
       padding: 90px 48px;
@@ -291,8 +291,12 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 2px;
     }
-    .package-card { padding: 48px 36px; border: 1px solid var(--border); }
-    .package-card.alt { background: var(--light-blue); }
+    .package-card {
+      padding: 48px 36px;
+      border: 1px solid var(--border);
+      background: #C1DBFB;
+    }
+    .package-card.alt { background: #C2D7FF; }
     .package-name {
       font-family: var(--font-lulo);
       font-size: 0.72rem;
@@ -318,7 +322,7 @@
 
     /* ─── CONTACT STRIP ─────────────────────────────────────────── */
     .contact-strip {
-      background: var(--light-blue);
+      background: var(--mid-blue);
       padding: 56px 48px;
       display: flex;
       gap: 64px;
@@ -347,7 +351,7 @@
 
     /* ─── PROMO BLOCK ───────────────────────────────────────────── */
     .promo-block {
-      background: var(--light-blue);
+      background: var(--mid-blue);
       padding: 48px;
       margin-bottom: 64px;
       border-left: 3px solid var(--navy);
